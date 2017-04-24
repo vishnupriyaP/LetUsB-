@@ -1,0 +1,49 @@
+April 23, 2012; ABC World News Tonight; 34 seconds; Government Agencies/Legislatures; Secret Service Prostitution Scandal; Evening
+March 15, 2012; ABC World News Tonight; 123 seconds; U.S. Foreign Affairs; War in Afghanistan; Evening
+April 4, 2012; CBS Evening News; 23 seconds; Domestic Terrorism; Terror threats/homeland security; Evening
+February 13, 2012; CBS Evening News; 23 seconds; Economy/Economics; Economy; Evening
+January 13, 2012; CBS Evening News; 25 seconds; U.S. Foreign Affairs; Hillary Clinton in Myanmar/Burma; Evening
+January 10, 2012; CBS The Early Show; 91 seconds; Government Agencies/Legislatures; New Obama administration; Morning
+January 30, 2012; CBS The Early Show; 14 seconds; Religion; Health care debate; Morning
+April 16, 2012; CNN Anderson Cooper 360; 332 seconds; U.S. Foreign Affairs; Secret Service Prostitution Scandal; Evening
+March 12, 2012; CNN Daytime; 25 seconds; Campaigns/Elections/Politics; 2012 Presidential election; Afternoon
+March 27, 2012; CNN Daytime; 360 seconds; Health/Medicine; Health care debate; Afternoon
+March 8, 2012; CNN Erin Burnett Outfront; 177 seconds; Campaigns/Elections/Politics; 2012 Presidential election; Evening
+February 21, 2012; CNN Erin Burnett Outfront; 29 seconds; Economy/Economics; Economy; Evening
+March 30, 2012; CNN Erin Burnett Outfront; 38 seconds; U.S. Foreign Affairs; Iran; Evening
+April 4, 2012; CNN John King USA; 88 seconds; Court/Legal System; Health care debate; Evening
+February 8, 2012; CNN John King USA; 88 seconds; Health/Medicine; Health care debate; Evening
+February 6, 2012; CNN Situation Room; 190 seconds; U.S. Foreign Affairs; Middle East unrest; Evening
+February 7, 2012; CNN unspecified show; 135 seconds; U.S. Foreign Affairs; Middle East unrest; Evening
+March 16, 2012; Fox News Daytime; 298 seconds; Defense/Military (Domestic); War in Afghanistan; Afternoon
+January 31, 2012; Fox News Daytime; 329 seconds; Economy/Economics; Economy; Afternoon
+March 27, 2012; Fox News Daytime; 48 seconds; Health/Medicine; Health care debate; Afternoon
+January 31, 2012; Fox News Daytime; 168 seconds; Health/Medicine; Health care debate; Afternoon
+February 9, 2012; Fox News Fox Report with Shepard Smith; 123 seconds; Health/Medicine; Health care debate; Evening
+March 28, 2012; Fox News Fox Report with Shepard Smith; 137 seconds; Health/Medicine; Health care debate; Evening
+February 9, 2012; Fox News Fox Report with Shepard Smith; 138 seconds; Health/Medicine; Health care debate; Evening
+March 8, 2012; Fox News Fox Report with Shepard Smith; 92 seconds; U.S. Foreign Affairs; Iran; Evening
+March 8, 2012; Fox News Fox Report with Shepard Smith; 119 seconds; U.S. Foreign Affairs; Iran; Evening
+May 25, 2012; Fox News Fox Report with Shepard Smith; 167 seconds; U.S. Foreign Affairs; Osama Bin Laden killed; Evening
+March 14, 2012; Fox News Hannity; 299 seconds; Domestic Terrorism; Terror threats/homeland security; Evening
+April 23, 2012; Fox News Hannity; 93 seconds; Government Agencies/Legislatures; New Obama administration; Evening
+March 21, 2012; Fox News O'Reilly Factor; 201 seconds; Economy/Economics; Gas/oil prices; Evening
+March 21, 2012; Fox News O'Reilly Factor; 132 seconds; Environment; Gas/oil prices; Evening
+April 12, 2012; Fox News Special Report with Bret Baier; 254 seconds; Campaigns/Elections/Politics; 2012 Presidential election; Evening
+March 13, 2012; Fox News Special Report with Bret Baier; 141 seconds; Economy/Economics; Gas/oil prices; Evening
+March 9, 2012; Fox News Special Report with Bret Baier; 160 seconds; Environment; Gas/oil prices; Evening
+January 13, 2012; Fox News Special Report with Bret Baier; 55 seconds; Government Agencies/Legislatures; Solyndra scandal; Evening
+March 1, 2012; Fox News Special Report with Bret Baier; 153 seconds; Government Agencies/Legislatures; Energy debate; Evening
+March 29, 2012; Fox News Special Report with Bret Baier; 15 seconds; Health/Medicine; Health care debate; Evening
+January 13, 2012; Fox News Special Report with Bret Baier; 141 seconds; U.S. Foreign Affairs; Iran; Evening
+May 30, 2012; Fox News Special Report with Bret Baier; 151 seconds; U.S. Foreign Affairs; Terror threats/homeland security; Evening
+February 24, 2012; Fox News Special Report with Bret Baier; 179 seconds; U.S. Foreign Affairs; War in Afghanistan; Evening
+February 6, 2012; MSNBC Daytime; 69 seconds; U.S. Foreign Affairs; Iran; Afternoon
+April 16, 2012; MSNBC Daytime; 121 seconds; U.S. Foreign Affairs; Secret Service Prostitution Scandal; Afternoon
+February 13, 2012; MSNBC Hardball with Chris Matthews; 310 seconds; Religion; Health care debate; Evening
+February 7, 2012; NBC Nightly News; 114 seconds; Campaigns/Elections/Politics; Health care debate; Evening
+February 10, 2012; NBC Nightly News; 181 seconds; Health/Medicine; Health care debate; Evening
+April 5, 2012; PBS NewsHour 1st half hour; 22 seconds; Court/Legal System; Health care debate; Evening
+April 13, 2012; PBS NewsHour 1st half hour; 445 seconds; Lifestyle; No Big Story; Evening
+March 30, 2012; PBS NewsHour 2nd half hour; 6 seconds; U.S. Foreign Affairs; Iran; Evening
+Number of Stories: 48; Number of Sources: 19; Seconds: 6656; Number of Topics: 11; Number of Subjects: 15
