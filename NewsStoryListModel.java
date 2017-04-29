@@ -49,7 +49,7 @@ class NewsStoryListModel implements Serializable {
 	 * @return Whether or not the list is empty.
 	 */
 	public boolean isEmpty() {
-		return false;
+		return newsStories.isEmpty();
 		
 	}
 	/**
@@ -59,7 +59,7 @@ class NewsStoryListModel implements Serializable {
 	 * @return The size of the list.
 	 */
 	public int size() {
-		return 0;
+		return newsStories.size();
 		
 	}
 	/**
@@ -70,7 +70,7 @@ class NewsStoryListModel implements Serializable {
 	 * @return Whether or not the list contains the news story.
 	 */
 	public boolean contains(NewsStory newsStory) {
-		return false;
+		return newsStories.contains(newsStory);
 		
 	}
 	/**
@@ -79,7 +79,7 @@ class NewsStoryListModel implements Serializable {
 	 * @return The news story at that index.
 	 */
 	public NewsStory get(int index) {
-		return null;
+		return newsStories.getElementAt(index);
 		
 	}
 	/**
@@ -99,7 +99,7 @@ class NewsStoryListModel implements Serializable {
 	 * @param newsStory The news story to add.
 	 */
 	public void add(NewsStory newsStory) {
-		
+		newsStories.addElement(newsStory);
 	}
 	/**
 	 * <P>
@@ -108,33 +108,33 @@ class NewsStoryListModel implements Serializable {
 	 * @param newsStory The news story to remove.
 	 */
 	public void remove(NewsStory newsStory) {
-		
+		newsStories.removeElement(newsStory);
 	}
 	/**
 	 * This method removes a list of news stories.
 	 * @param newsStories The stories to remove.
 	 */
 	public void removeListOfNewsStories(DefaultListModel<NewsStory> newsStories) {
-		
+		newsStories.removeAllElements(); 
 	}
 	/**
 	 * This method sets the news story list.
 	 * @param newsStoryListModel The model to set to.
 	 */
 	public void setNewsStories(NewsStoryListModel newsStoryListModel) {
-		
+		newsStories.clear();
+		for(int i = 0; i<newsStoryListModel.size(); i++) {
+			newsStories.add(i,newsStoryListModel.get(i));
+		}
 	}
 	/**
 	 * This method sets the news story list model from an array.
 	 * @param newsStoryModelArray The array of news stories.
 	 */
 	public void setNewsStoriesFromArray(NewsStory[] newsStoryModelArray) {
-		
+		newsStories.clear();
+		for(int i = 0; i < newsStoryModelArray.length; i++) {
+			newsStories.add(i,newsStoryModelArray[i]);
+		}
 	}
-
-	
-	
-	
-	
-	
 }
