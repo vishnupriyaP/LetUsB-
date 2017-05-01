@@ -33,7 +33,16 @@ class Nooz {
 	 * @param args The program arguments.
 	 */
 	public static void main(String[] args) {
-	
-		//TODO set the model, view, and controller
+		// TODO ***DONE*** set the model, view, and controller
+		// Any view displaying data from the model to the user needs to know about the model.
+		selectionView.setNewsDataBaseModel(newsDataBaseModel);
+		
+		// Any controller sending updates to the model needs to know about the model.
+		newsController.setNewsDataBaseModel(newsDataBaseModel);
+		
+		// Any controller interacting with a view needs to know about that view.
+		newsController.setSelectionView(selectionView);
+		
+		// TODO: What else?
 	}
 }
