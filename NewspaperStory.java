@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 
 /**
- * Project 3, CS 2334, Section 010 March 8, 2017
+ * Project 4, CS 2334, Section 010 March 8, 2017
  * <P>
  * A <code>NewspaperStory</code> is composed of the date the story was
  * published, the name of the newspaper where the story was published, the
@@ -21,9 +21,9 @@ import java.time.LocalDate;
  * @version 3.0
  * 
  */
-//Jered Little edited the code for this class.
+//Jered Little and Jessica Horner edited the code for this class.
 public class NewspaperStory extends NewsStory {
-
+	private static final long serialVersionUID = 1L;
 	/**
 	 * The constructor which takes parameters for all of the fields can simply
 	 * pass them to the constructor for <code>NewsStory</code> and let it do the
