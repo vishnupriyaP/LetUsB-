@@ -11,7 +11,15 @@ public enum NewsMetric {
 	 */
 	@Override
 	public String toString() {
-		return null;
+		switch(this)
+		{
+		case LENGTH:
+			return "Length";
+		case COUNT:
+			return "Count";
+		default:
+			throw new IllegalArgumentException();
+		}
 		
 	}
 	
