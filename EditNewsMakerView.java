@@ -1,9 +1,15 @@
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -37,7 +43,7 @@ public class EditNewsMakerView extends JPanel implements Serializable, ActionLis
 	/** The news data base model. */
 	private NewsDataBaseModel newsDataBaseModel;
 	/** The news story list as a string. */
-	private DefaultListModel<String> newsStoryStringList;
+	private DefaultListModel<String> newsStoryStringList = new DefaultListModel<String>();
 	/** The news story list as a JList String. */
 	private JList<String> jlNewsStoryList;
 	/**  The news story list scroll pane. */
@@ -62,6 +68,44 @@ public class EditNewsMakerView extends JPanel implements Serializable, ActionLis
 	 * @param newsDataBaseModel The model for the data base.
 	 */
 	public EditNewsMakerView(NewsMakerModel newsMakerModel,  NewsDataBaseModel newsDataBaseModel) {
+		this.newsDataBaseModel = newsDataBaseModel;
+		this.newsMakerModel = newsMakerModel;
+		
+		populateNewsStoryJList();
+		
+		//list of stories
+		jlNewsStoryList = new JList<String>(newsStoryStringList);
+		jspNewsStoryList = new JScrollPane(jlNewsStoryList);
+		jpNewsStoryList = new JPanel(new BorderLayout());
+		
+		jpNewsStoryList.add(jspNewsStoryList);
+		
+		//name & remove from story button.
+		jtfName = new JTextField(newsMakerModel.getName());
+		jbtRemoveFromStory = new JButton("Remove From Selected Story");
+		jlbName = new JLabel(newsMakerModel.getName());
+		
+		jplName = new JPanel(new GridLayout(2,2));
+		jplName.add(jlbName);
+		jplName.add(new JLabel());
+		jplName.add(jtfName);
+		jplName.add(jbtRemoveFromStory);
+		
+		//add to the panel
+		this.setLayout(new BorderLayout());
+		this.add(jpNewsStoryList, BorderLayout.CENTER);
+		this.add(jplName,BorderLayout.SOUTH);
+		
+		//add this to the list of action listeners for the news maker model
+		newsMakerModel.addActionListener(this);
+		
+		/*
+		JFrame frame = new JFrame("Edit Newsmaker");
+		frame.add(this); 
+		frame.setSize(500, 300);
+		frame.setVisible(true);
+		*/
+		
 		
 	}
 	/**
@@ -70,7 +114,7 @@ public class EditNewsMakerView extends JPanel implements Serializable, ActionLis
 	 * </P>
 	 */
 	public int[] getSelectedNewsStoryIndices() {
-			return null;
+			return this.jlNewsStoryList.getSelectedIndices();
 			
 	}
 	/**
@@ -79,7 +123,27 @@ public class EditNewsMakerView extends JPanel implements Serializable, ActionLis
 	 * </P>
 	 */
 	private void populateNewsStoryJList() {
+		
+		List<NewsMedia> media = new ArrayList<NewsMedia>();
+		for(int i = 0; i < newsMakerModel.getNewsStoryListModel().size(); i++) {
+			if(newsMakerModel.getNewsStoryListModel().get(i) instanceof NewspaperStory && !media.contains(NewsMedia.NEWSPAPER)) {
+				media.add(NewsMedia.NEWSPAPER);
+			}
+			else if(newsMakerModel.getNewsStoryListModel().get(i) instanceof OnlineNewsStory && !media.contains(NewsMedia.ONLINE)) {
+				media.add(NewsMedia.ONLINE);
+			}
+			else if (newsMakerModel.getNewsStoryListModel().get(i) instanceof TVNewsStory && !media.contains(NewsMedia.TV)){
+				media.add(NewsMedia.TV);
+			}
+			if(media.contains(NewsMedia.TV) && media.contains(NewsMedia.NEWSPAPER)  && media.contains(NewsMedia.ONLINE)) {
+				break;
+			}
 			
+		}
+		
+		for(int i = 0; i < newsMakerModel.getNewsStoryListModel().size(); i++) {
+			newsStoryStringList.addElement(UserInterface.convertToOutputFormat(newsMakerModel.getNewsStoryListModel().get(i),media));
+		}
 	}
 
 	/**
@@ -89,9 +153,17 @@ public class EditNewsMakerView extends JPanel implements Serializable, ActionLis
 	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+		String[] listData = new String[newsDataBaseModel.getNewsMakerListModel().get(this.newsMakerModel).getNewsStoryListModel().size()];
+		for(int i = 0; i < listData.length; i++) {
+			
+			if(newsDataBaseModel.getNewsStoryListModel().isEmpty()) break;
+			else if(newsDataBaseModel.getNewsStoryListModel().size() == i) {
+				break;
+			}
+			listData[i] = newsDataBaseModel.getNewsMakerListModel().get(this.newsMakerModel).getNewsStoryListModel().get(i).toString();
+		}
+		this.jlNewsStoryList.setListData(listData);
 		
 	}
-
-
+	
 }

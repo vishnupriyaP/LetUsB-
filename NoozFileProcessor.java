@@ -27,7 +27,7 @@ import java.util.Map;
 //Jered Little modified the stub code for this class.
 class NoozFileProcessor {
 	/** The list of news makers. */
-	private static NewsMakerListModel newsMakers = new NewsMakerListModel();
+	private static NewsMakerListModel newsMakers =  new NewsMakerListModel();
 	/** The list of news stories */
 	private static NewsStoryListModel newsStories = new NewsStoryListModel();
 	/** The data base. */
@@ -71,11 +71,8 @@ class NoozFileProcessor {
 	 */
 	public static NewsDataBaseModel readNoozFile(String fileName, Map<String, String> sourceMap,
 			Map<String, String> topicMap, Map<String, String> subjectMap) throws IOException {
+
 		
-		System.out.println("--------------------");
-		for(String k : sourceMap.keySet()) System.out.println(k + " | " + sourceMap.get(k));
-		System.exit(0);
-		return null;
 		FileReader fr = new FileReader(fileName);
 		BufferedReader br = new BufferedReader(fr);
 		String nextLine = br.readLine(); // First line is header info. Ignore.

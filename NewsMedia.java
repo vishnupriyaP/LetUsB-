@@ -16,7 +16,16 @@ public enum NewsMedia {
 	 */
 	@Override
 	public String toString() {
-		return null;
+		switch (this) {
+		case NEWSPAPER:
+			return "Newspaper";
+		case ONLINE:
+			return "Online Story";
+		case TV:
+			return "TV Story";
+		default:
+			throw new IllegalArgumentException();
+		}
 		
 	}
 	

@@ -1,3 +1,4 @@
+import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ class NewsStoryListModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** The list of newspaper stories. */
-	private DefaultListModel<NewsStory> newsStories;
+	private DefaultListModel<NewsStory> newsStories = new DefaultListModel<NewsStory>();
 
 	/**
 	 * <P>
@@ -40,7 +41,7 @@ class NewsStoryListModel implements Serializable {
 	 */
 	//TODO he didnt specify the parameter name.
 	public NewsStoryListModel(NewsStoryListModel newsStoryListModel) {
-		
+		this.newsStories = newsStoryListModel.getNewsStories();
 	}
 	/**
 	 * <P>
@@ -79,7 +80,7 @@ class NewsStoryListModel implements Serializable {
 	 * @return The news story at that index.
 	 */
 	public NewsStory get(int index) {
-		return newsStories.getElementAt(index);
+		return newsStories.get(index);
 		
 	}
 	/**
@@ -108,33 +109,55 @@ class NewsStoryListModel implements Serializable {
 	 * @param newsStory The news story to remove.
 	 */
 	public void remove(NewsStory newsStory) {
-		newsStories.removeElement(newsStory);
+		for(int i = 0; i < newsStories.size(); i++) {
+			if(newsStories.get(i).equals(newsStory)) {
+				newsStories.remove(i);
+			}
+		}
 	}
 	/**
 	 * This method removes a list of news stories.
 	 * @param newsStories The stories to remove.
 	 */
 	public void removeListOfNewsStories(DefaultListModel<NewsStory> newsStories) {
-		newsStories.removeAllElements(); 
+		
+		//for all the news stories to remove
+		for(int i = 0; i < newsStories.size();i++) {
+			//if the list has that story
+			if(this.newsStories.contains(newsStories.get(i))) {
+				//loop through the list
+				for(int j = 0; j < this.newsStories.size(); j++) {
+					//if the story in the list is equal to the one we want to remove
+					if(this.newsStories.get(j).equals(newsStories.getElementAt(i))) {
+						//remove it
+						this.newsStories.remove(j);
+					}
+					
+				} //end for list
+			}//end if contains
+		}//end for stories to remove
+		
 	}
 	/**
 	 * This method sets the news story list.
 	 * @param newsStoryListModel The model to set to.
 	 */
 	public void setNewsStories(NewsStoryListModel newsStoryListModel) {
-		newsStories.clear();
-		for(int i = 0; i<newsStoryListModel.size(); i++) {
-			newsStories.add(i,newsStoryListModel.get(i));
-		}
+		this.newsStories = newsStoryListModel.getNewsStories();
 	}
 	/**
 	 * This method sets the news story list model from an array.
 	 * @param newsStoryModelArray The array of news stories.
 	 */
 	public void setNewsStoriesFromArray(NewsStory[] newsStoryModelArray) {
-		newsStories.clear();
-		for(int i = 0; i < newsStoryModelArray.length; i++) {
-			newsStories.add(i,newsStoryModelArray[i]);
+		for(int i = 0; i < newsStoryModelArray.length;i++) {
+			newsStories.addElement(newsStoryModelArray[i]);
 		}
 	}
+
+	
+	
+	
+	
+	
 }

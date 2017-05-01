@@ -1,6 +1,5 @@
 import java.awt.GridLayout;
 import java.text.NumberFormat;
-import java.time.Month;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -8,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.NumberFormatter;
 
 /**
  * Project 4, CS 2334, Section 010, April 19, 2017
@@ -33,14 +33,11 @@ public class AddEditNewsStoryView extends JPanel{
 	/** This variable contains a reference to the database model. */
 	private NewsDataBaseModel newsDataBaseModel;
 	/** This variable contains a reference to the news story model. */
-	//TODO NOTE: THIS ISNT IN HIS UML AS A CLASS AS OF REVISION 2!!! UNCOMMENT WHEN HE FIXES
-	//private NewsStoryModel newsStoryModel;
+	private NewsStory newsStory;
 	/** This field contains the label for the news story type. */
 	private JLabel jlbNewsStoryType;
 	/** This field contains the JComboBox for the news story type. */
-	//JComboBox<NewsStoryType> jcbNewsStoryType;
-	//TODO delete below variable, uncomment above variable
-	JComboBox<String> jcbNewsStoryType;
+	JComboBox<NewsMedia> jcbNewsStoryType;
 	/** This field contains a JPanel for the news story type. */
 	private JPanel jpNewsStoryType;
 	/** This field contains the label for the news story source. */
@@ -106,9 +103,7 @@ public class AddEditNewsStoryView extends JPanel{
 	/** This field contains a label for the news story part of day. */
 	private JLabel jlbNewsStoryPartOfDay;
 	/** This field contains the JComboBox for the news story part of day. */
-	//JComboBox<PartOfDay> jcbNewsStoryPartOfDay;
-	//TODO DELETE BELOW VARIABLE, UNCOMMENT ABOVE VARIABLE
-	JComboBox<String> jcbNewsStoryPartOfDay;
+	JComboBox<PartOfDay> jcbNewsStoryPartOfDay;
 	/** This field contains the panel for the news story part of day. */
 	private JPanel jplNewsStoryPartOfDay;
 	/** This field contains the panel for when the story was published //TODO what. */
@@ -128,134 +123,189 @@ public class AddEditNewsStoryView extends JPanel{
 	 * @param newsDataBaseModel - The model for the news data base.
 	 * @param newsStoryModel - the model for the news story.
 	 */
-	public AddEditNewsStoryView(//NewsDataBaseModel newsDataBaseModel, NewsStoryModel newsStoryModel
+	public AddEditNewsStoryView(NewsDataBaseModel newsDataBaseModel, NewsStory newsStory
 			) {
 		//TODO constructor. add code.
-	    this.setLayout(new GridLayout(9, 1,0,10));
-	    
-	    /* Story Type */
-		jlbNewsStoryType = new JLabel("Type:");
-		//TODO change the JComboBox
-		jcbNewsStoryType = new JComboBox<String>();
-		jpNewsStoryType = new JPanel(new GridLayout(1,2));
-		jpNewsStoryType.add(jlbNewsStoryType);
-		jpNewsStoryType.add(jcbNewsStoryType);
-		
-		/* Story Source */
-		jlbNewsStorySource = new JLabel("Source:");
-		//TODO change the JComboBox
-		jcbNewsStorySource = new JComboBox<String>();
-		jpNewsStorySource = new JPanel(new GridLayout(1,2));
-		jpNewsStorySource.add(jlbNewsStorySource);
-		jpNewsStorySource.add(jcbNewsStorySource);
-		
-		
-		/* Story Topic */
-		jlbNewsStoryTopic = new JLabel("Topic:");
-		//TODO change the JComboBox
-		jcbNewsStoryTopic = new JComboBox<String>();
-		jpNewsStoryTopic = new JPanel(new GridLayout(1,2));
-		jpNewsStoryTopic.add(jlbNewsStoryTopic);
-		jpNewsStoryTopic.add(jcbNewsStoryTopic);
-		
-		/* Story Subject */
-		jlbNewsStorySubject = new JLabel("Subject:");
-		//TODO change the JComboBox
-		jcbNewsStorySubject = new JComboBox<String>();
-		jpNewsStorySubject = new JPanel(new GridLayout(1,2));
-		jpNewsStorySubject.add(jlbNewsStorySubject);
-		jpNewsStorySubject.add(jcbNewsStorySubject);
-		
-		/* Story NewsMaker 1 */
-		jlbNewsStoryNewsMaker1 = new JLabel("News Maker 1:");
-		//TODO change the JComboBox
-		jcbNewsStoryNewsMaker1 = new JComboBox<String>();
-		jpNewsStoryNewsMaker1 = new JPanel(new GridLayout(1,2));
-		jpNewsStoryNewsMaker1.add(jlbNewsStoryNewsMaker1);
-		jpNewsStoryNewsMaker1.add(jcbNewsStoryNewsMaker1);
-		
-		/* Story NewsMaker 2 */
-		jlbNewsStoryNewsMaker2 = new JLabel("News Maker 2:");
-		//TODO change the JComboBox
-		jcbNewsStoryNewsMaker2 = new JComboBox<String>();
-		jpNewsStoryNewsMaker2 = new JPanel(new GridLayout(1,2));
-		jpNewsStoryNewsMaker2.add(jlbNewsStoryNewsMaker2);
-		jpNewsStoryNewsMaker2.add(jcbNewsStoryNewsMaker2);
-		
-		
-		/* Story Length */
-		jlbNewsStoryLength = new JLabel("Length:");
-		//TODO change the JComboBox
-		jftfNewsStoryLength = new JFormattedTextField();
-		jplNewsStoryLength = new JPanel(new GridLayout(1,2));
-		jplNewsStoryLength.add(jlbNewsStoryLength);
-		jplNewsStoryLength.add(jftfNewsStoryLength);
-		
-		
-		/* Year */
-		jlbNewsStoryYear = new JLabel("Year:");
-		//TODO change the JComboBox
-		jcbNewsStoryYear = new JComboBox<Integer>();
-		jplNewsStoryYear = new JPanel(new GridLayout(1,2));
-		jplNewsStoryYear.add(jlbNewsStoryYear);
-		jplNewsStoryYear.add(jcbNewsStoryYear);
-		
-		/* Month */
-		jlbNewsStoryMonth = new JLabel("Month:");
-		//TODO change the JComboBox
-		jcbNewsStoryMonth = new JComboBox<Month>();
-		jplNewsStoryMonth = new JPanel(new GridLayout(1,2));
-		jplNewsStoryMonth.add(jlbNewsStoryMonth);
-		jplNewsStoryMonth.add(jcbNewsStoryMonth);
-		
-		/* Day */
-		jlbNewsStoryDay = new JLabel("Day:");
-		//TODO change the JComboBox
-		jcbNewsStoryDay = new JComboBox<Integer>();
-		jplNewsStoryDay = new JPanel(new GridLayout(1,2));
-		jplNewsStoryDay.add(jlbNewsStoryDay);
-		jplNewsStoryDay.add(jcbNewsStoryDay);
-		
-		/* Part Of Day */
-		jlbNewsStoryPartOfDay = new JLabel("Part of Day:");
-		//TODO change the JComboBox
-		jcbNewsStoryPartOfDay = new JComboBox<String>();
-		jplNewsStoryPartOfDay = new JPanel(new GridLayout(1,2));
-		jplNewsStoryPartOfDay.add(jlbNewsStoryPartOfDay);
-		jplNewsStoryPartOfDay.add(jcbNewsStoryPartOfDay);
-		
-		/* Panel for WHEN */
-		jplNewsStoryWhen = new JPanel(new GridLayout(1,4,50,0));
-		jplNewsStoryWhen.add(jplNewsStoryYear);
-		jplNewsStoryWhen.add(jplNewsStoryMonth);
-		jplNewsStoryWhen.add(jplNewsStoryDay);
-		jplNewsStoryWhen.add(jplNewsStoryPartOfDay);
-		
-		/* Add Story */
-		jbtAddEditNewsStory = new JButton("Add/Edit News Story");
-		jplAddEditNewsStory = new JPanel();
-		jplAddEditNewsStory.add(jbtAddEditNewsStory);
-		
-		
-		this.add(jpNewsStoryType);
-		this.add(jpNewsStorySource);
-		this.add(jpNewsStoryTopic);
-		this.add(jpNewsStorySubject);
-		this.add(jpNewsStoryNewsMaker1);
-		this.add(jpNewsStoryNewsMaker2);
-		this.add(jplNewsStoryLength);
-		this.add(jplNewsStoryWhen);
-		this.add(jplAddEditNewsStory);
-		this.setVisible(true);
-		
+		this.newsDataBaseModel = newsDataBaseModel;
+			this.setLayout(new GridLayout(9, 1,0,10));
+
+			/* Story Type */
+			jlbNewsStoryType = new JLabel("Type:");
+			jcbNewsStoryType = new JComboBox<NewsMedia>();
+			jcbNewsStoryType.addItem(NewsMedia.NEWSPAPER);
+			jcbNewsStoryType.addItem(NewsMedia.ONLINE);
+			jcbNewsStoryType.addItem(NewsMedia.TV);
+			
+			jpNewsStoryType = new JPanel(new GridLayout(1,2));
+			jpNewsStoryType.add(jlbNewsStoryType);
+			jpNewsStoryType.add(jcbNewsStoryType);
+
+			/* Story Source */
+			jlbNewsStorySource = new JLabel("Source:");
+			//TODO change the JComboBox
+			jcbNewsStorySource = new JComboBox<String>();
+			System.out.println(newsDataBaseModel.getNewsSources().length);
+			for(int i = 0; i < newsDataBaseModel.getNewsSources().length; i++) {
+				jcbNewsStorySource.addItem(newsDataBaseModel.getNewsSources()[i]);
+			}
+			jpNewsStorySource = new JPanel(new GridLayout(1,2));
+			jpNewsStorySource.add(jlbNewsStorySource);
+			jpNewsStorySource.add(jcbNewsStorySource);
+
+
+			/* Story Topic */
+			jlbNewsStoryTopic = new JLabel("Topic:");
+			jcbNewsStoryTopic = new JComboBox<String>();
+			for(int i = 0; i < newsDataBaseModel.getNewsTopics().length; i++) {
+				jcbNewsStoryTopic.addItem(newsDataBaseModel.getNewsTopics()[i]);
+			}
+			jpNewsStoryTopic = new JPanel(new GridLayout(1,2));
+			jpNewsStoryTopic.add(jlbNewsStoryTopic);
+			jpNewsStoryTopic.add(jcbNewsStoryTopic);
+
+			/* Story Subject */
+			jlbNewsStorySubject = new JLabel("Subject:");
+			jcbNewsStorySubject = new JComboBox<String>();
+			for(int i = 0; i < newsDataBaseModel.getNewsSubjects().length; i++) {
+				jcbNewsStorySubject.addItem(newsDataBaseModel.getNewsSubjects()[i]);
+			}
+			jpNewsStorySubject = new JPanel(new GridLayout(1,2));
+			jpNewsStorySubject.add(jlbNewsStorySubject);
+			jpNewsStorySubject.add(jcbNewsStorySubject);
+
+			/* Story NewsMaker 1 */
+			jlbNewsStoryNewsMaker1 = new JLabel("News Maker 1:");
+			jcbNewsStoryNewsMaker1 = new JComboBox<String>();
+			jcbNewsStoryNewsMaker1.setEditable(true);
+			String[] names1 = newsDataBaseModel.getNewsMakerNames();
+			for(int i = 0; i < names1.length; i++) {
+				jcbNewsStoryNewsMaker1.addItem(names1[i]);
+			}
+			jpNewsStoryNewsMaker1 = new JPanel(new GridLayout(1,2));
+			jpNewsStoryNewsMaker1.add(jlbNewsStoryNewsMaker1);
+			jpNewsStoryNewsMaker1.add(jcbNewsStoryNewsMaker1);
+
+			/* Story NewsMaker 2 */
+			jlbNewsStoryNewsMaker2 = new JLabel("News Maker 2:");
+			//TODO change the JComboBox
+			jcbNewsStoryNewsMaker2 = new JComboBox<String>();
+			jcbNewsStoryNewsMaker2.setEditable(true);
+			String[] names2 = newsDataBaseModel.getNewsMakerNames();
+			for(int i = 0; i < names2.length; i++) {
+				jcbNewsStoryNewsMaker2.addItem(names2[i]);
+			}
+			jpNewsStoryNewsMaker2 = new JPanel(new GridLayout(1,2));
+			jpNewsStoryNewsMaker2.add(jlbNewsStoryNewsMaker2);
+			jpNewsStoryNewsMaker2.add(jcbNewsStoryNewsMaker2);
+
+
+			/* Story Length */
+			jlbNewsStoryLength = new JLabel("Length:");
+			//min and max size
+			NumberFormatter nf = new NumberFormatter();
+			nf.setMinimum(new Integer(0));
+			nf.setMaximum(new Integer(1000000000));
+			jftfNewsStoryLength = new JFormattedTextField(nf);
+			jplNewsStoryLength = new JPanel(new GridLayout(1,2));
+			jplNewsStoryLength.add(jlbNewsStoryLength);
+			jplNewsStoryLength.add(jftfNewsStoryLength);
+
+
+			/* Year */
+			jlbNewsStoryYear = new JLabel("Year:");
+			jcbNewsStoryYear = new JComboBox<Integer>();
+			for(int i = 1; i <= 2017; i++) {
+				jcbNewsStoryYear.addItem(i);
+			}
+			jplNewsStoryYear = new JPanel(new GridLayout(1,2));
+			jplNewsStoryYear.add(jlbNewsStoryYear);
+			jplNewsStoryYear.add(jcbNewsStoryYear);
+
+			/* Month */
+			jlbNewsStoryMonth = new JLabel("Month:");
+			jcbNewsStoryMonth = new JComboBox<Month>();
+			jcbNewsStoryMonth.addItem(Month.JANUARY);
+			jcbNewsStoryMonth.addItem(Month.FEBRUARY);
+			jcbNewsStoryMonth.addItem(Month.MARCH);
+			jcbNewsStoryMonth.addItem(Month.APRIL);
+			jcbNewsStoryMonth.addItem(Month.MAY);
+			jcbNewsStoryMonth.addItem(Month.JUNE);
+			jcbNewsStoryMonth.addItem(Month.JULY);
+			jcbNewsStoryMonth.addItem(Month.AUGUST);
+			jcbNewsStoryMonth.addItem(Month.SEPTEMBER);
+			jcbNewsStoryMonth.addItem(Month.OCTOBER);
+			jcbNewsStoryMonth.addItem(Month.NOVEMBER);
+			jcbNewsStoryMonth.addItem(Month.DECEMBER);
+			jplNewsStoryMonth = new JPanel(new GridLayout(1,2));
+			jplNewsStoryMonth.add(jlbNewsStoryMonth);
+			jplNewsStoryMonth.add(jcbNewsStoryMonth);
+
+			/* Day */
+			jlbNewsStoryDay = new JLabel("Day:");
+			jcbNewsStoryDay = new JComboBox<Integer>();
+			for(int i = 1; i <= 31; i++) {
+				jcbNewsStoryDay.addItem(i);
+			}
+			jplNewsStoryDay = new JPanel(new GridLayout(1,2));
+			jplNewsStoryDay.add(jlbNewsStoryDay);
+			jplNewsStoryDay.add(jcbNewsStoryDay);
+
+			/* Part Of Day */
+			jlbNewsStoryPartOfDay = new JLabel("Part of Day:");
+			jcbNewsStoryPartOfDay = new JComboBox<PartOfDay>();
+			jcbNewsStoryPartOfDay.addItem(PartOfDay.MORNING);
+			jcbNewsStoryPartOfDay.addItem(PartOfDay.AFTERNOON);
+			jcbNewsStoryPartOfDay.addItem(PartOfDay.EVENING);
+			jcbNewsStoryPartOfDay.addItem(PartOfDay.LATE_NIGHT);
+			jplNewsStoryPartOfDay = new JPanel(new GridLayout(1,2));
+			jplNewsStoryPartOfDay.add(jlbNewsStoryPartOfDay);
+			jplNewsStoryPartOfDay.add(jcbNewsStoryPartOfDay);
+
+			/* Panel for WHEN */
+			jplNewsStoryWhen = new JPanel(new GridLayout(1,4,50,0));
+			jplNewsStoryWhen.add(jplNewsStoryYear);
+			jplNewsStoryWhen.add(jplNewsStoryMonth);
+			jplNewsStoryWhen.add(jplNewsStoryDay);
+			jplNewsStoryWhen.add(jplNewsStoryPartOfDay);
+
+			/* Add Story */
+			jbtAddEditNewsStory = new JButton();
+			jplAddEditNewsStory = new JPanel();
+			jplAddEditNewsStory.add(jbtAddEditNewsStory);
+
+
+			this.add(jpNewsStoryType);
+			this.add(jpNewsStorySource);
+			this.add(jpNewsStoryTopic);
+			this.add(jpNewsStorySubject);
+			this.add(jpNewsStoryNewsMaker1);
+			this.add(jpNewsStoryNewsMaker2);
+			this.add(jplNewsStoryLength);
+			this.add(jplNewsStoryWhen);
+			this.add(jplAddEditNewsStory);
+			this.setVisible(true);
+
+			//if they chose edit news story, we need to populate the fields
+			if(newsStory != null) {
+				//part of day
+				if(newsStory instanceof OnlineNewsStory) jcbNewsStoryPartOfDay.setSelectedItem(((OnlineNewsStory) newsStory).getPartOfDay());
+				if(newsStory instanceof TVNewsStory) jcbNewsStoryPartOfDay.setSelectedItem(((TVNewsStory) newsStory).getPartOfDay());
+				//basic info
+				jcbNewsStorySource.setSelectedItem(newsStory.getSource());
+				jcbNewsStoryTopic.setSelectedItem(newsStory.getTopic());
+				jcbNewsStorySubject.setSelectedItem(newsStory.getSubject());
+				jftfNewsStoryLength.setText(Integer.toString(newsStory.getLength()));
+				jcbNewsStoryNewsMaker1.setSelectedItem(newsStory.getNewsMaker1().getName());
+				jcbNewsStoryNewsMaker2.setSelectedItem(newsStory.getNewsMaker2().getName());
+				//date
+				jcbNewsStoryYear.setSelectedItem(newsStory.getDate().getYear());
+				jcbNewsStoryMonth.setSelectedItem(newsStory.getDate().getMonthValue());
+				jcbNewsStoryDay.setSelectedItem(newsStory.getDate().getDayOfMonth());
+			}
+			
+
 	}
-	
-	//TODO TEST DELETE
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		frame.add(new AddEditNewsStoryView());
-		frame.setVisible(true);
-		frame.setSize(700, 390);
-	}
-	
+
+
+
 }

@@ -110,6 +110,7 @@ public class PieChart extends JFrame{
 	 * </P>
 	 * @param g The graphics object used to paint the objects to the screen.
 	 */
+	@Override
 	public void paintComponents(Graphics g) {
 		//TODO paint wedges
 	}

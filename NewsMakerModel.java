@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Project 3, CS 2334, Section 010, March 8, 2017
+ * Project 4, CS 2334, Section 010, April 30, 2017
  * <P>
  * A <code>NewsMaker</code> is the subject of a <code>NewsStory</code>. A
  * <code>NewsMaker</code> may be a person or an organization. A
@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * </P>
  * 
  * @author Dean Hougen
- * @version 2.0
+ * @version 3.0
  */
 public class NewsMakerModel implements Comparable<NewsMakerModel>, Serializable, ActionListener {
 	/**
@@ -79,7 +79,9 @@ public class NewsMakerModel implements Comparable<NewsMakerModel>, Serializable,
 	 */
 	public NewsStoryListModel getNewsStoryListModel() {
 		// TODO Have it return a copy instead (Eventually)
-		return this.newsStoryListModel;
+		NewsStoryListModel model = new NewsStoryListModel();
+		model = this.newsStoryListModel;
+		return model;
 	}
 
 	/**
@@ -101,6 +103,7 @@ public class NewsMakerModel implements Comparable<NewsMakerModel>, Serializable,
 	public void addNewsStory(NewsStory newsStory) {
 		// TODO Verify that story is about this NewsMaker (Eventually)
 		this.newsStoryListModel.add(newsStory);
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "added news story to news maker"));
 	}
 	
 	/**
@@ -146,6 +149,8 @@ public class NewsMakerModel implements Comparable<NewsMakerModel>, Serializable,
 	 */
 	public void setName(String name) {
 		
+		this.name = name;
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "set news maker name"));
 	}
 	/**
 	 * <P>
@@ -154,7 +159,8 @@ public class NewsMakerModel implements Comparable<NewsMakerModel>, Serializable,
 	 * @param newsStoryListModel The model to set to.
 	 */
 	public void setNewsStoryListModel(NewsStoryListModel newsStoryListModel) {
-		
+		this.newsStoryListModel = newsStoryListModel;
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "set news story list for news maker"));
 	}
 	/**
 	 * <P>
@@ -163,7 +169,12 @@ public class NewsMakerModel implements Comparable<NewsMakerModel>, Serializable,
 	 * @param newsStory The news story to remove.
 	 */
 	public void removeNewsStory(NewsStory newsStory) {
-		
+		for(int i = 0; i < newsStoryListModel.size(); i++) {
+			if(newsStoryListModel.get(i).equals(newsStory)) {
+				newsStoryListModel.remove(newsStory);
+			}
+		}
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "removed news story from news maker"));
 	}
 	/**
 	 * <P>
@@ -172,7 +183,7 @@ public class NewsMakerModel implements Comparable<NewsMakerModel>, Serializable,
 	 */
 	@Override
 	public String toString() {
-		return null;
+		return this.getName();
 		
 	}
 	/**
@@ -182,7 +193,10 @@ public class NewsMakerModel implements Comparable<NewsMakerModel>, Serializable,
 	 * @param l The listener to add.
 	 */
 	public void addActionListener(ActionListener l) {
-		
+		if (actionListenerList == null) {
+			actionListenerList = new ArrayList<ActionListener>();
+		}
+		actionListenerList.add(l);
 	}
 	/**
 	 * <P>
@@ -190,7 +204,7 @@ public class NewsMakerModel implements Comparable<NewsMakerModel>, Serializable,
 	 * @param l The listener to remove.
 	 */
 	public void removeActionListner(ActionListener l) {
-		
+		actionListenerList.remove(l);
 	}
 	/**
 	 * <P>
@@ -199,7 +213,18 @@ public class NewsMakerModel implements Comparable<NewsMakerModel>, Serializable,
 	 * @param e The event to process.
 	 */
 	private void processEvent(ActionEvent e) {
-		
+		ArrayList<ActionListener> list;
+
+		synchronized (this) {
+			if (actionListenerList == null)
+				return;
+			list = (ArrayList<ActionListener>) actionListenerList.clone();
+		}
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println("Action performed... Informing Listeners...");
+			ActionListener listener = list.get(i);
+			listener.actionPerformed(e);
+		}
 	}
 
 	/**
@@ -210,6 +235,7 @@ public class NewsMakerModel implements Comparable<NewsMakerModel>, Serializable,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
 		
 	}
 	

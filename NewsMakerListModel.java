@@ -22,7 +22,7 @@ import javax.swing.DefaultListModel;
  * @version 1.0
  *
  */
-//NOTE: Jered Little created the stub code for this class. Jessica Horner modified the methods in this class.
+//NOTE: Jered Little created the stub code for this class.
 class NewsMakerListModel implements Serializable, ActionListener {
 	/**
 	 * This is the first serializable version of NewsMakerList, so we select a
@@ -38,7 +38,7 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * list of <code>NewsMakerModel</code> objects.
 	 */
 	NewsMakerListModel() {
-
+		newsMakerDefaultListModel = new DefaultListModel<NewsMakerModel>();
 		
 	}
 	
@@ -49,7 +49,7 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * @param newsMakerListModel The model to set the field to.
 	 */
 	public NewsMakerListModel(NewsMakerListModel newsMakerListModel) {
-		// TODO FIXME
+		this.newsMakerDefaultListModel = newsMakerListModel.getNewsMakers();
 	}
 	
 	/**
@@ -60,8 +60,7 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * @return Whether or not the news maker list model is empty.
 	 */
 	public boolean isEmpty() {
-		boolean value = newsMakerDefaultListModel.isEmpty();
-		return value;
+		return newsMakerDefaultListModel.isEmpty();
 		
 	}
 	
@@ -83,6 +82,7 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * @return Whether or not the news maker is in the list.
 	 */
 	public boolean contains(NewsMakerModel newsMakerModel) {
+
 		return newsMakerDefaultListModel.contains(newsMakerModel);
 		
 	}
@@ -93,22 +93,16 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * @param newsMakerModel The news maker to get.
 	 * @return The news maker from the list.
 	 */
-	public NewsMakerModel get(NewsMakerModel newsMakerModel) //TODO didn't specify this variable name) 
+	public NewsMakerModel get(NewsMakerModel newsMakerModel) //TODO didnt specify this variable name) 
 	{
-		// TODO do we need to make sure that the list contains the news maker first?
-		// if (contains(newsMakerModel) == true) {
-		
 		for(int i = 0; i < newsMakerDefaultListModel.size(); i++) {
-			if(newsMakerDefaultListModel.getElementAt(i).getName().equals(newsMakerModel.getName())) {
-				return newsMakerDefaultListModel.getElementAt(i);
+			if(newsMakerDefaultListModel.get(i).getName().equals(newsMakerModel.getName())) {
+				return newsMakerDefaultListModel.get(i);
 			}
 		}
-			System.err.println("Search Result: Newsmaker not found");
-			return null;
-		// }
-		// else {
-			// System.err.print("That news maker does not exist.");
-		// }
+		System.err.println("Error. NewsMaker not found");
+		return null;
+		
 	}
 	/**
 	 * <P>
@@ -127,7 +121,7 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * @param index The index to look at.
 	 * @return The news maker at that index.
 	 */
-	public NewsMakerModel get(int index) //TODO he didn't specify this variable name
+	public NewsMakerModel get(int index) 
 	{
 		return newsMakerDefaultListModel.get(index);
 		
@@ -139,11 +133,26 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * @return The news makers names.
 	 */
 	public String[] getNewsMakerNames() {
-		String[] newsMakers = new String[newsMakerDefaultListModel.getSize()];
-		for (int i = 0; i < newsMakerDefaultListModel.getSize(); i++) {
-			newsMakers[i]= newsMakerDefaultListModel.getElementAt(i).getName();
+		//subjects as array list
+		ArrayList<String> namesArrayList = new ArrayList<String>();
+		//Special newsmaker
+		//add all subjects to array list
+		for(int i = 0; i < newsMakerDefaultListModel.size(); i++) {
+			//if the news makers name is not none, then add to list
+			if(!namesArrayList.contains(newsMakerDefaultListModel.get(i).getName())) {
+				namesArrayList.add(newsMakerDefaultListModel.get(i).getName());
+			}
 		}
-		return newsMakers;
+		
+		//string[] subjects
+		String[] names = new String[namesArrayList.size()];
+		//add all subjects from array list to the string[] variable
+		for(int i = 0; i < namesArrayList.size(); i++) {
+			names[i] = namesArrayList.get(i);
+		}
+		
+		return names;
+	
 	}
 	/**
 	 * <P>
@@ -152,15 +161,12 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * @param newsMakerModel The news maker to replace.
 	 */
 	public void replace(NewsMakerModel newsMakerModel) {
-		// TODO Double check that this method is the proper method.
-		/* if I go to edit a news maker, two basic things to do in the view: edit name/news stories associated
-		 * to remove news maker, select news story and click remove news maker
-		 * Might want to change news maker, but there is an existing news maker with that name.
-		 * Replace option should populate, change or cancel
-		 * Binary search for the news maker if replacing
-		*/
-		// TODO figure out how to take the input from the user to replace the newsMakerModel 
-		// newsMakerDefaultListModel.set(newsMakerDefaultListModel.indexOf(newsMakerModel), REPLACEME - text from user);
+		for(int i = 0; i < newsMakerDefaultListModel.size();i++) {
+			if(newsMakerDefaultListModel.get(i).equals(newsMakerModel)) {
+				newsMakerDefaultListModel.remove(i);
+				newsMakerDefaultListModel.add(i,newsMakerModel);
+			}
+		}
 	}
 	/**
 	 * <P>
@@ -169,7 +175,9 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * @param newsMakerModel The newsmaker to remove.
 	 */
 	public void remove(NewsMakerModel newsMakerModel) {
-		newsMakerDefaultListModel.removeElement(newsMakerModel);
+		for(int i = 0; i < newsMakerDefaultListModel.size();i++) {
+			if(newsMakerDefaultListModel.get(i).equals(newsMakerModel)) newsMakerDefaultListModel.remove(i);
+		}
 	}
 	/**
 	 * <P>
@@ -178,7 +186,50 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * @param newsMakers The news makers to remove.
 	 */
 	public void removeListOfNewsMakers(DefaultListModel<NewsMakerModel> newsMakers) {
-		newsMakers.removeAllElements();
+		//for each news maker to remove
+		for(int i = 0; i < newsMakers.size();i++) {
+			//if the list contains that newsmaker
+			if(this.contains(newsMakers.get(i))) {
+				//loop through the list
+				for(int j = 0; j < this.size(); j++) {
+					//if the news maker in the list is equal to the one we want to remove
+					if(this.get(j).equals(newsMakers.getElementAt(i))) {
+						//loop through all the stories for him
+						for(int x = 0; x < this.get(j).getNewsStoryListModel().size();x++) {
+							//if the story in the list has the first newsmaker equal to the one we want to remove
+							if(this.get(j).getNewsStoryListModel().getNewsStories().getElementAt(x).getNewsMaker1().getName().equals(newsMakers.get(i).getName())) {
+								//change the name of that newsmaker in the story to none
+								this.get(j).getNewsStoryListModel().get(x).setNewsMaker1(this.get(new NewsMakerModel()));
+							}
+							//if the story in the list has the second newsmaker equal to the one we want to remove
+							else if(this.get(j).getNewsStoryListModel().getNewsStories().getElementAt(x).getNewsMaker2().getName().equals(newsMakers.get(i).getName())) {
+								//change the name of that newsmaker in the story to none
+								this.get(j).getNewsStoryListModel().get(x).setNewsMaker2(this.get(new NewsMakerModel()));
+							}
+						}
+					}
+
+				} //end for list
+			}//end if contains
+		}
+		
+		
+		
+		//for all the news makers to remove
+		for(int i = 0; i < newsMakers.size();i++) {
+			//if the list has that news maker
+			if(this.newsMakerDefaultListModel.contains(newsMakers.get(i))) {
+				//loop through the list
+				for(int j = 0; j < this.newsMakerDefaultListModel.size(); j++) {
+					//if the news maker in the list is equal to the one we want to remove
+					if(this.newsMakerDefaultListModel.get(j).equals(newsMakers.getElementAt(i))) {
+						//remove it
+						this.newsMakerDefaultListModel.remove(j);
+					}
+					
+				} //end for list
+			}//end if contains
+		}//end for news makers to remove
 	}
 	/**
 	 * <P>
@@ -186,7 +237,22 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * </P>
 	 */
 	public void removeAllNewsMakers() {
-		newsMakerDefaultListModel.removeAllElements();
+		for(int i = 0; i < newsMakerDefaultListModel.size();i++) {
+			for(int x = 0; x < this.get(i).getNewsStoryListModel().size();x++) {
+				//if the story in the list has the first newsmaker equal to the one we want to remove
+				if(this.get(i).getNewsStoryListModel().getNewsStories().getElementAt(x).getNewsMaker1().getName().equals(newsMakerDefaultListModel.get(i).getName())) {
+					//change the name of that newsmaker in the story to none
+					this.get(i).getNewsStoryListModel().get(x).setNewsMaker1(this.get(new NewsMakerModel()));
+				}
+				//if the story in the list has the second newsmaker equal to the one we want to remove
+				else if(this.get(i).getNewsStoryListModel().getNewsStories().getElementAt(x).getNewsMaker2().getName().equals(newsMakerDefaultListModel.get(i).getName())) {
+					//change the name of that newsmaker in the story to none
+					this.get(i).getNewsStoryListModel().get(x).setNewsMaker2(this.get(new NewsMakerModel()));
+
+				} 
+			} //end for each story
+		} //end for each news maker
+		newsMakerDefaultListModel.clear();
 	}
 	/**
 	 * <P>
@@ -194,13 +260,9 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * </P>
 	 * @param newsMakerListModel The news maker list model to set.
 	 */
-	public void setNewsMakersFromNewsMakerList(NewsMakerListModel newsMakerListModel) //TODO he didn't specify this variable name
-	{	
-		newsMakerDefaultListModel.clear();
-		for(int i = 0; i < newsMakerListModel.size(); i++) {
-			newsMakerDefaultListModel.add(i, newsMakerListModel.get(i));
-		}
-
+	public void setNewsMakersFromNewsMakerList(NewsMakerListModel newsMakerListModel) //TODO he didnt specify this variable name
+	{		
+		newsMakerDefaultListModel = newsMakerListModel.getNewsMakers();
 	}
 
 	/**
@@ -217,13 +279,8 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * @throws IllegalArgumentException
 	 *             If the news maker to add is already in the list.
 	 */
-	public void add(NewsMakerModel newsMakerModel) throws IllegalArgumentException { 
-		if (newsMakerDefaultListModel.contains(newsMakerModel) != true) {
-			newsMakerDefaultListModel.addElement(newsMakerModel);
-		}
-		else {
-			System.err.print("That news maker already exists.");
-		}
+	public void add(NewsMakerModel newsMakerModel) {
+		newsMakerDefaultListModel.addElement(newsMakerModel);
 	}
 
 
@@ -239,41 +296,22 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * @return The news maker found or null if none found.
 	 */
 	public NewsMakerModel getExactMatch(String newsMakerName) {
-		ArrayList<NewsMakerModel> newsMakersTemp = new ArrayList<NewsMakerModel>();
-		NewsMakerModel exactNewsMaker;
-		int index;
-		for (int i = 0; i < newsMakerDefaultListModel.size(); i++) {
-			newsMakersTemp.add(newsMakerDefaultListModel.getElementAt(i));
-		}
-		
-		//TODO ASK!! Do we need to include the option for a linear search?		
-		
-			// if(Sorted) {
-				// binary search
-		sort();
-		index = Collections.binarySearch(newsMakersTemp, get(new NewsMakerModel(newsMakerName)));
-		exactNewsMaker = newsMakersTemp.get(index);
-			// }
-			// else {
-				//unsorted linear search
 
-				//for (int i = 0; i < newsMakerDefaultListModel.getSize(); i++) {
-					//NewsMakerModel newsMaker;
-					//if (newsMaker.getName().equals(newsMakerName)) {
-						//return newsMaker;
-					//}
-				//}
-			// if (index >= 0) {
+		//TODO FIX
+		ArrayList<NewsMakerModel> newsMakersAsArrayList = new ArrayList<NewsMakerModel>();
+		
+		for(int i = 0; i < newsMakerDefaultListModel.size(); i++) {
+			newsMakersAsArrayList.add(newsMakerDefaultListModel.get(i));
+		}
+		Collections.sort(newsMakersAsArrayList);
+			int index = Collections.binarySearch(newsMakersAsArrayList, new NewsMakerModel(newsMakerName));
+			if (index >= 0) {
 				// TODO Have it return a copy instead (Eventually)
-				// return this.newsMakerDefaultListModel.get(index);
-			// } else {
-				// return null;
-			// }
+				return this.newsMakerDefaultListModel.get(index);
+			} else {
+				return null;
+			}
 			
-		System.err.print("Attempted to conduct binary search on unsorted list.");
-		
-		
-		return exactNewsMaker;
 	}
 
 	/**
@@ -285,14 +323,14 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * @return The news maker found or null if none found.
 	 */
 	public NewsMakerModel getPartialMatch(String newsMakerName) {
-		NewsMakerModel newsMaker = null;
+		//TODO make sure this works.
 		for (int i = 0; i < newsMakerDefaultListModel.size(); i++) {
-			if (newsMakerDefaultListModel.get(i).contains(newsMakerName)) {
-			return newsMaker = newsMakerDefaultListModel.get(i);
+			if (newsMakerDefaultListModel.get(i).getName().contains(newsMakerName)) {
+				return newsMakerDefaultListModel.getElementAt(i);
 			}
-			else newsMaker = null;
 		}
-		return newsMaker;
+		System.err.println("NewsMaker not found");
+		return null;
 	}
 
 	/**
@@ -300,11 +338,19 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 * <code>sorted</code> flag to <code>true</code>.
 	 */
 	public void sort() {
-		ArrayList<NewsMakerModel> newsMakersTemp = new ArrayList<NewsMakerModel>();
-		for (int i = 0; i < newsMakerDefaultListModel.size(); i++) {
-			newsMakersTemp.add(newsMakerDefaultListModel.getElementAt(i));
+		//arraylist
+		ArrayList<NewsMakerModel> model = new ArrayList<NewsMakerModel>();
+		//put all values in arraylist
+		for(int i = 0; i < newsMakerDefaultListModel.size(); i++) {
+			model.add(newsMakerDefaultListModel.getElementAt(i));
 		}
-		Collections.sort(newsMakersTemp);
+		//sort arraylist
+		Collections.sort(model);
+		//put back into default list model
+		for(int i = 0; i < model.size(); i++) {
+			newsMakerDefaultListModel.add(i, model.get(i));
+		}
+		
 	}
 
 	/**
@@ -314,7 +360,7 @@ class NewsMakerListModel implements Serializable, ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		//TODO what do we do here??
 		
 	}
 }

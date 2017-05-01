@@ -262,7 +262,7 @@ abstract class NewsStory implements Comparable<NewsStory>, Serializable {
 	 * @param date The date to set.
 	 */
 	public void setDate(LocalDate date) {
-		
+		this.date = date;
 	}
 	/**
 	 * <P>
@@ -271,7 +271,7 @@ abstract class NewsStory implements Comparable<NewsStory>, Serializable {
 	 * @param source The source to set.
 	 */
 	public void setSource(String source) {
-		
+		this.source = source;
 	}
 	/**
 	 * <P>
@@ -280,7 +280,7 @@ abstract class NewsStory implements Comparable<NewsStory>, Serializable {
 	 * @param length The length to set.
 	 */
 	public void setLength(int length) {
-		
+		this.length = length;
 	}
 	/**
 	 * <P>
@@ -289,7 +289,7 @@ abstract class NewsStory implements Comparable<NewsStory>, Serializable {
 	 * @param topic The topic to set.
 	 */
 	public void setTopic(String topic) {
-		
+		this.topic = topic;
 	}
 	/**
 	 * <P>
@@ -298,7 +298,7 @@ abstract class NewsStory implements Comparable<NewsStory>, Serializable {
 	 * @param subject The subject to set.
 	 */
 	public void setSubject(String subject) {
-		
+		this.subject = subject;
 	}
 	/**
 	 * <P>
@@ -307,7 +307,7 @@ abstract class NewsStory implements Comparable<NewsStory>, Serializable {
 	 * @param newsMaker1 The newsmaker to set.
 	 */
 	public void setNewsMaker1(NewsMakerModel newsMaker1) {
-		
+		this.newsMaker1 = newsMaker1;
 	}
 	/**
 	 * <P>
@@ -316,6 +316,6 @@ abstract class NewsStory implements Comparable<NewsStory>, Serializable {
 	 * @param newsMaker2 The second newsmaker to set.
 	 */
 	public void setNewsMaker2(NewsMakerModel newsMaker2) {
-		
+		this.newsMaker2 = newsMaker2;
 	}
 }

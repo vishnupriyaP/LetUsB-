@@ -1,7 +1,9 @@
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
- * Project 4, CS 2334, Section 010 March 8, 2017
+ * Project 3, CS 2334, Section 010 March 8, 2017
  * <P>
  * A <code>NewspaperStory</code> is composed of the date the story was
  * published, the name of the newspaper where the story was published, the
@@ -21,9 +23,14 @@ import java.time.LocalDate;
  * @version 3.0
  * 
  */
-//Jered Little and Jessica Horner edited the code for this class.
-public class NewspaperStory extends NewsStory {
-	private static final long serialVersionUID = 1L;
+//Jered Little edited the code for this class.
+public class NewspaperStory extends NewsStory implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8276767879870825660L;
+	
 	/**
 	 * The constructor which takes parameters for all of the fields can simply
 	 * pass them to the constructor for <code>NewsStory</code> and let it do the
@@ -62,5 +69,13 @@ public class NewspaperStory extends NewsStory {
 	@Override
 	public int getLengthInWords() {
 		return this.getLength();
+	}
+	
+	//TODO MAYBE DELETE
+	@Override
+	public String toString() {
+		ArrayList<NewsMedia> news = new ArrayList<NewsMedia>();
+		news.add(NewsMedia.NEWSPAPER);
+		return UserInterface.convertToOutputFormat(this, news);
 	}
 }

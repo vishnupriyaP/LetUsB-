@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Project 3, CS 2334, Section 010, March 8, 2017
@@ -132,5 +133,14 @@ public class OnlineNewsStory extends NewsStory {
 		else {
 			return false;
 		}
+	}
+	
+	
+	//TODO MAYBE DELETE
+	@Override
+	public String toString() {
+		ArrayList<NewsMedia> news = new ArrayList<NewsMedia>();
+		news.add(NewsMedia.ONLINE);
+		return UserInterface.convertToOutputFormat(this, news);
 	}
 }

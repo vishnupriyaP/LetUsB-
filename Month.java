@@ -20,7 +20,34 @@ public enum Month {
 	 */
 	@Override
 	public String toString() {
-		return null;
+		switch (this) {
+		case JANUARY:
+			return "January";
+		case FEBRUARY:
+			return "February";
+		case MARCH:
+			return "March";
+		case APRIL:
+			return "April";
+		case MAY:
+			return "May";
+		case JUNE:
+			return "June";
+		case JULY:
+			return "July";
+		case AUGUST:
+			return "August";
+		case SEPTEMBER:
+			return "September";
+		case OCTOBER:
+			return "October";
+		case NOVEMBER:
+			return "November";
+		case DECEMBER:
+			return "December";
+		default:
+			throw new IllegalArgumentException();
+		}
 		
 	}
 	/**
@@ -28,7 +55,35 @@ public enum Month {
 	 * This method will convert from an enumeration to an integer value.
 	 * </P>
 	 */
-	private void toInt() {
+	public int toInt() {
+		switch (this) {
+		case JANUARY:
+			return 1;
+		case FEBRUARY:
+			return 2;
+		case MARCH:
+			return 3;
+		case APRIL:
+			return 4;
+		case MAY:
+			return 5;
+		case JUNE:
+			return 6;
+		case JULY:
+			return 7;
+		case AUGUST:
+			return 8;
+		case SEPTEMBER:
+			return 9;
+		case OCTOBER:
+			return 10;
+		case NOVEMBER:
+			return 11;
+		case DECEMBER:
+			return 12;
+		default:
+			throw new IllegalArgumentException();
+		}
 		
 	}
 	/**
@@ -38,7 +93,35 @@ public enum Month {
 	 * @param x The integer to convert to a date.
 	 */
 	//TODO he didnt specify variable name
-	public static void fromInt(int x) {
+	public static Month fromInt(int x) {
+		switch (x) {
+		case 1:
+			return Month.JANUARY;
+		case 2:
+			return Month.FEBRUARY;
+		case 3:
+			return Month.MARCH;
+		case 4:
+			return Month.APRIL;
+		case 5:
+			return Month.MAY;
+		case 6:
+			return Month.JUNE;
+		case 7:
+			return Month.JULY;
+		case 8:
+			return Month.AUGUST;
+		case 9:
+			return Month.SEPTEMBER;
+		case 10:
+			return Month.OCTOBER;
+		case 11:
+			return Month.NOVEMBER;
+		case 12:
+			return Month.DECEMBER;
+		default:
+			throw new IllegalArgumentException();
+		}
 		
 	}
 

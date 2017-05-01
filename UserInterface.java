@@ -66,17 +66,16 @@ class UserInterface {
 	 *            included in the list.
 	 * @return The story in the display format.
 	 */
-	private static String convertToOutputFormat(NewsStory newsStory, List<NewsMedia> newsMedia) {
+	public static String convertToOutputFormat(NewsStory newsStory, List<NewsMedia> newsMedia) {
 
 		// TODO: Append each line with subject and (for TV and online) part of
 		// day.
 		//TODO fix
-		/*
 		String storyString = "";
 		LocalDate date = newsStory.getDate();
 
 		// If the type doesn't include TV, use words
-		if (!mediaType.contains("t")) {
+		if (!newsMedia.contains(NewsMedia.TV)) {
 			if (newsStory instanceof NewspaperStory) {
 				storyString += date.getMonth().getDisplayName(TextStyle.FULL, Locale.US) + " " + date.getDayOfMonth()
 						+ ", " + date.getYear() + "; " + newsStory.getSource() + "; " + newsStory.getLength()
@@ -89,7 +88,7 @@ class UserInterface {
 			}
 		}
 		// If the type is TV news, use seconds (from length)
-		else if (mediaType.equals("t")) {
+		else if (newsMedia.contains(NewsMedia.TV) && newsStory instanceof TVNewsStory) {
 			storyString += date.getMonth().getDisplayName(TextStyle.FULL, Locale.US) + " " + date.getDayOfMonth() + ", "
 					+ date.getYear() + "; " + newsStory.getSource() + "; " + newsStory.getLength() + " seconds; "
 					+ newsStory.getTopic() + "; " + newsStory.getSubject() + "; "
@@ -113,8 +112,7 @@ class UserInterface {
 						+ ((OnlineNewsStory) newsStory).getPartOfDay().toString();
 			}
 		}
-		*/
-		return null;
+		return storyString;
 	}
 
 }

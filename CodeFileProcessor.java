@@ -1,10 +1,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-// This is to test the modifying aspect of github
 /**
  * Project 3, CS 2334, Section 010, March 8, 2017
  * <P>
@@ -24,7 +24,7 @@ import java.util.TreeMap;
  * 
  */
 public class CodeFileProcessor {
-	private static Map<String, String> codeMap = new TreeMap<String, String>();
+	private static Map<String, String> codeMap = new LinkedHashMap<String, String>();
 
 	/**
 	 * The method for reading code files.
