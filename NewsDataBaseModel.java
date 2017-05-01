@@ -42,7 +42,7 @@ public class NewsDataBaseModel implements Serializable {
 	private Map<String,String> newsSubjectMap;
 	
 	/** A reference to the news maker model. */
-	NewsMakerModel none; //why called none? idk
+	NewsMakerModel none; 
 	
 	/** A reference to the news maker list model. */
 	private NewsMakerListModel newsMakerListModel;
@@ -113,6 +113,8 @@ public class NewsDataBaseModel implements Serializable {
 	 */
 	public void setNewsSourceMap(Map<String, String> newsSourceMap ) {
 		this.newsSourceMap = newsSourceMap;
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, 
+				"Set news source map."));
 	}
 	/**
 	 * <P>
@@ -144,6 +146,8 @@ public class NewsDataBaseModel implements Serializable {
 	 */
 	public void setNewsTopicMap(Map<String, String> newsTopicMap) {
 		this.newsTopicMap = newsTopicMap;
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, 
+				"Set news topic map."));
 	}
 	/**
 	 * <P>
@@ -175,6 +179,8 @@ public class NewsDataBaseModel implements Serializable {
 	 */
 	public void setNewsSubjectMap(Map<String, String> newsSubjectMap) {
 		this.newsSubjectMap = newsSubjectMap;
+		processEvent(
+				new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "Set news subject map."));
 	}
 	/**
 	 * <P>
@@ -236,6 +242,8 @@ public class NewsDataBaseModel implements Serializable {
 	 */
 	public void setNewsMakerListModel(NewsMakerListModel newsMakerListModel) {
 		this.newsMakerListModel = newsMakerListModel;
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, 
+				"Set news maker list."));
 	}
 	/**
 	 * <P>
@@ -245,6 +253,8 @@ public class NewsDataBaseModel implements Serializable {
 	 */
 	public void addNewsMakerModel(NewsMakerModel newsMakerModel) {
 		this.newsMakerListModel.add(newsMakerModel);
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, 
+						"Add news maker to list."));
 	}
 	/**
 	 * <P>
@@ -254,6 +264,8 @@ public class NewsDataBaseModel implements Serializable {
 	 */
 	public void replaceNewsMakerModel(NewsMakerModel newsMakerModel) {
 		this.newsMakerListModel.replace(newsMakerModel);
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, 
+						"Replace current news maker."));
 	}
 	/**
 	 * <P>
@@ -265,6 +277,8 @@ public class NewsDataBaseModel implements Serializable {
 	public void removeNewsMakers(DefaultListModel<NewsMakerModel> newsMakers) {
 		for(int i = 0; i < newsMakers.size(); i++) {
 			this.newsMakerListModel.remove(newsMakers.get(i));
+			processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, 
+							"Remove news makers from list."));
 		}
 	}
 	/**
@@ -274,6 +288,8 @@ public class NewsDataBaseModel implements Serializable {
 	 */
 	public void removeAllNewsMakers() {
 		newsMakerListModel.removeAllNewsMakers();
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, 
+				"Remove all news makers from list."));
 	}
 	/**
 	 * 
@@ -284,6 +300,7 @@ public class NewsDataBaseModel implements Serializable {
 	 */
 	public void sortNewsMakerListModel() {
 		newsMakerListModel.sort();
+		// TODO ask if I need to put a listener here; it mutates, 
 	}
 	/**
 	 * This method checks if the news story list is empty,
@@ -337,6 +354,8 @@ public class NewsDataBaseModel implements Serializable {
 	 */
 	public void setNewsStoryListModel(NewsStoryListModel newsStoryListModel) {
 		this.newsStoryListModel = newsStoryListModel;
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, 
+				"Set news story list model."));
 	}
 	/**
 	 * <P>
@@ -346,6 +365,8 @@ public class NewsDataBaseModel implements Serializable {
 	 */
 	public void setNewsStoryListModelFromArray(NewsStory[] newsStoryModelArray) {
 		newsStoryListModel.setNewsStoriesFromArray(newsStoryModelArray);
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, 
+				"Set news story list from array."));
 	}
 	/**
 	 * <P>
@@ -355,6 +376,8 @@ public class NewsDataBaseModel implements Serializable {
 	 */
 	public void addNewsStory(NewsStory newsStory) {
 		this.newsStoryListModel.add(newsStory);
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, 
+				"Add news story."));
 	}
 	/**
 	 * <P>
@@ -367,6 +390,8 @@ public class NewsDataBaseModel implements Serializable {
 		for(int i = 0; i < newsStories.size(); i++) {
 			this.newsStoryListModel.remove(newsStories.get(i));
 		}
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, 
+				"Remove news stories from model."));
 	}
 	/**
 	 * <P>
@@ -378,6 +403,8 @@ public class NewsDataBaseModel implements Serializable {
 		for(int i = 0; i < newsStoryListModel.size(); i++) {
 			this.newsStoryListModel.remove(newsStoryListModel.get(i));
 		}
+		processEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, 
+				"Remove all news stories."));
 	}
 	/**
 	 * <P>
