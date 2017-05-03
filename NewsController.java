@@ -453,13 +453,13 @@ public class NewsController {
 			if(answer.equals("date")) {
 				sortOrder.add(SortCriterion.DATE_TIME);
 			}
-			if(sortOrder.get(i) == null) {
+			if(answer == null) {
 				return;
 			}
 			//while the answer is not valid
-			while(!sortOrder.get(i).equals(SortCriterion.SOURCE) && !sortOrder.get(i).equals(SortCriterion.TOPIC) && !sortOrder.get(i).equals(SortCriterion.SUBJECT) && !sortOrder.get(i).equals(SortCriterion.DATE_TIME) && 
-					!sortOrder.get(i).equals(SortCriterion.LENGTH)) {
-				sortOrder.remove(i);
+			while(!answer.equals(SortCriterion.SOURCE) && !answer.equals(SortCriterion.TOPIC) &&
+					!answer.equals(SortCriterion.SUBJECT) && !answer.equals(SortCriterion.DATE_TIME) &&
+					!answer.equals(SortCriterion.LENGTH)) {
 				answer = JOptionPane.showInputDialog("Try Again. What is your " +order[i]+ " sort criterion? (source, topic, subject, date, or length?)");
 				if(answer.equals("source")) {
 					sortOrder.add(SortCriterion.SOURCE);
@@ -702,9 +702,9 @@ public class NewsController {
 						return;
 					}
 					//while the answer is not valid
-					while(!sortOrder.get(i).equals(SortCriterion.SOURCE) && !sortOrder.get(i).equals(SortCriterion.TOPIC) && !sortOrder.get(i).equals(SortCriterion.SUBJECT) && !sortOrder.get(i).equals(SortCriterion.DATE_TIME) && 
-							!sortOrder.get(i).equals(SortCriterion.LENGTH)) {
-						sortOrder.remove(i);
+					while(!answer.equals(SortCriterion.SOURCE) && !answer.equals(SortCriterion.TOPIC) &&
+					!answer.equals(SortCriterion.SUBJECT) && !answer.equals(SortCriterion.DATE_TIME) &&
+					!answer.equals(SortCriterion.LENGTH)){
 						answer = JOptionPane.showInputDialog("Try Again. What is your " +order[i]+ " sort criterion? (source, topic, subject, date, or length?)");
 						if(answer.equals("source")) {
 							sortOrder.add(SortCriterion.SOURCE);
@@ -1096,9 +1096,9 @@ public class NewsController {
 						}
 						
 						//add story to individual newsmakers
-						newsDataBaseModel.getNewsMakerListModel().get(newsMaker1).addNewsStory((new TVNewsStory(date, sourceName,length,topic, subject,partOfDay,
+						newsDataBaseModel.getNewsMakerListModel().get(newsMaker1).addNewsStory((new NewspaperStory(date, sourceName,length,topic, subject,
 								newsMaker1, newsMaker2)));
-						newsDataBaseModel.getNewsMakerListModel().get(newsMaker2).addNewsStory((new TVNewsStory(date, sourceName,length,topic, subject,partOfDay,
+						newsDataBaseModel.getNewsMakerListModel().get(newsMaker2).addNewsStory((new NewspaperStory(date, sourceName,length,topic, subject,
 								newsMaker1, newsMaker2)));
 						
 					}
@@ -1117,9 +1117,9 @@ public class NewsController {
 						}
 						
 						//add story to individual newsmakers
-						newsDataBaseModel.getNewsMakerListModel().get(newsMaker1).addNewsStory((new TVNewsStory(date, sourceName,length,topic, subject,partOfDay,
+						newsDataBaseModel.getNewsMakerListModel().get(newsMaker1).addNewsStory((new OnlineNewsStory(date, sourceName,length,topic, subject,partOfDay,
 								newsMaker1, newsMaker2)));
-						newsDataBaseModel.getNewsMakerListModel().get(newsMaker2).addNewsStory((new TVNewsStory(date, sourceName,length,topic, subject,partOfDay,
+						newsDataBaseModel.getNewsMakerListModel().get(newsMaker2).addNewsStory((new OnlineNewsStory(date, sourceName,length,topic, subject,partOfDay,
 								newsMaker1, newsMaker2)));
 					}
 					//if they want a tv news story
